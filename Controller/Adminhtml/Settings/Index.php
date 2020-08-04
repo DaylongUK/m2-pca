@@ -1,47 +1,66 @@
 <?php
 
-namespace PCAPredict\Tag\Controller\Adminhtml\Settings;
+namespace Loqate\Tag\Controller\Adminhtml\Settings;
 
 use Magento\Backend\App\Action;
 use Magento\Backend\App\Action\Context;
 use Magento\Framework\View\Result\PageFactory;
 use Magento\Framework\HTTP\ZendClientFactory;
-use Magento\Framework\Message\ManagerInterface;
-use PCAPredict\Tag\Model\SettingsDataFactory;
+use Loqate\Tag\Model\SettingsDataFactory;
 
-class Index extends Action {
-        
+class Index extends Action
+{
+    /**
+     * @var PageFactory
+     */
     protected $resultPageFactory;
+
+    /**
+     * @var SettingsDataFactory
+     */
     protected $settingsDataFactory;
+
+    /**
+     * @var ZendClientFactory
+     */
     protected $httpClientFactory;
 
-    public function __construct(Context $context,
-                                PageFactory $resultPageFactory, 
-                                SettingsDataFactory $settingsDataFactory, 
-                                ZendClientFactory $httpClientFactory)
-    {
-        $this->resultPageFactory = $resultPageFactory; 
-        $this->settingsDataFactory = $settingsDataFactory;  
+    /**
+     * Index constructor.
+     *
+     * @param Context $context
+     * @param PageFactory $resultPageFactory
+     * @param SettingsDataFactory $settingsDataFactory
+     * @param ZendClientFactory $httpClientFactory
+     */
+    public function __construct(
+        Context $context,
+        PageFactory $resultPageFactory,
+        SettingsDataFactory $settingsDataFactory,
+        ZendClientFactory $httpClientFactory
+    ) {
+        $this->resultPageFactory = $resultPageFactory;
+        $this->settingsDataFactory = $settingsDataFactory;
         $this->httpClientFactory = $httpClientFactory;
 
         return parent::__construct($context);
     }
-        
-    public function execute(){
 
-        if ($this->getRequest()->isAjax()) 
-        {
+    /**
+     * @return \Magento\Framework\App\ResponseInterface|\Magento\Framework\Controller\ResultInterface|
+     * \Magento\Framework\View\Result\Page
+     */
+    public function execute()
+    {
+
+        if ($this->getRequest()->isAjax()) {
             $action = $this->getRequest()->getParam('action');
 
-            if($action == 'save')
-            {
+            if ($action == 'save') {
                 $customjavascriptfront = $this->getRequest()->getParam('custom_javascript_front');
                 $customjavascriptback = $this->getRequest()->getParam('custom_javascript_back');
 
-                $settings = $this->settingsDataFactory->create();
-
-                try 
-                {
+                try {
                     $settings = $this->settingsDataFactory->create();
                     $itemCollection = $settings->getCollection();
                     $items = $itemCollection->getData();
@@ -50,35 +69,35 @@ class Index extends Action {
                     $lastItemRow = null;
     
                     foreach ($items as $item) {
-                        if ($lastCreationTime == null || $lastCreationTime < $item['creation_time'])
-                        {
+                        if ($lastCreationTime == null || $lastCreationTime < $item['creation_time']) {
                             $lastCreationTime = $item['creation_time'];
-                            $lastItemRow = $item;    
+                            $lastItemRow = $item;
                         }
                     }
 
-                    $settings->load($lastItemRow['pcapredict_tag_settingsdata_id']);
+                    $settings->load($lastItemRow['loqate_tag_settingsdata_id']);
 
                     $settings->setCustomJavascriptFront($customjavascriptfront);
                     $settings->setCustomJavascriptBack($customjavascriptback);
 
                     $settings->save();
-                }
-                catch(\Exception $ex) 
-                {
-                    var_dump($ex->getMessage());
+                } catch (\Exception $ex) {
+                    $ex->getMessage();
                 }
             }
         }
 
         $page = $this->resultPageFactory->create();
-        $page->setActiveMenu('PCAPredict_Tag::Settings');
-        $page->getConfig()->getTitle()->prepend(__('PCA Predict Settings'));
-        return $page; 
+        $page->setActiveMenu('Loqate_Tag::Settings');
+        $page->getConfig()->getTitle()->prepend(__('Loqate Settings'));
+        return $page;
     }
 
+    /**
+     * @return bool
+     */
     protected function _isAllowed()
     {
-        return $this->_authorization->isAllowed('PCAPredict_Tag::Settings');
+        return $this->_authorization->isAllowed('Loqate_Tag::Settings');
     }
 }

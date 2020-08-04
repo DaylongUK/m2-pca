@@ -1,2 +1,4 @@
 *.zip
 debug.log
+.idea
+composer.lock

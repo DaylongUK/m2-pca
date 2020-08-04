@@ -1,19 +1,29 @@
 <?php
 
-namespace PCAPredict\Tag\Model;
+namespace Loqate\Tag\Model;
 
 use Magento\Framework\Model\AbstractModel;
 use Magento\Framework\DataObject\IdentityInterface;
+use Loqate\Tag\Model\ResourceModel\SettingsData as SettingsResourceModel;
 
 class SettingsData extends AbstractModel implements IdentityInterface
 {
-    const CACHE_TAG = 'pcapredict_tag_settingsdata';
+    /**
+     *  Loqate cache tag
+     */
+    const CACHE_TAG = 'loqate_tag_settingsdata';
 
+    /**
+     * SettingsData constructor
+     */
     protected function _construct()
     {
-        $this->_init('PCAPredict\Tag\Model\ResourceModel\SettingsData');
+        $this->_init(SettingsResourceModel::class);
     }
 
+    /**
+     * @return array|string[]
+     */
     public function getIdentities()
     {
         return [self::CACHE_TAG . '_' . $this->getId()];

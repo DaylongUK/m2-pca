@@ -1,5 +1,5 @@
 {
-    "name": "pcapredict/tag",
+    "name": "loqate/tag",
     "description": "Address Validation for Checkout Forms",
     "repositories": {
     "magento": {
@@ -8,21 +8,21 @@
         }
     },
     "require": {
-        "php": "~5.5.0|~5.6.0|~7.0.0|~7.1.0|~7.2.0|~7.3.0"
+        "php": "~5.5.0|~5.6.0|~7.0"
     },
     "autoload": {
         "psr-4": {
-            "PCAPredict\\Tag\\": ""
+            "Loqate\\Tag\\": ""
         },
         "files": [
             "registration.php"
         ]
     },
     "type": "magento2-module",
-    "version": "2.1.1",
+    "version": "2.0.10",
     "authors": [
         {
-            "name": "PCA Predict",
+            "name": "Loqate",
             "email": "support@pcapredict.com"
         }
     ]
