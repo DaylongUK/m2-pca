@@ -1,6 +1,6 @@
 <?php
 
-namespace PCAPredict\Tag\Setup;
+namespace Loqate\Tag\Setup;
 
 use Magento\Framework\Setup\InstallSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
@@ -9,16 +9,19 @@ use Magento\Framework\DB\Ddl\Table;
 
 class InstallSchema implements InstallSchemaInterface
 {
+    /**
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
+     * @throws \Zend_Db_Exception
+     */
     public function install(SchemaSetupInterface $setup, ModuleContextInterface $context)
-    {        
+    {
         $setup->startSetup();
 
         $table = $setup->getConnection()
-        ->newTable(
-            $setup->getTable('pcapredict_tag_settingsdata')
-            )
+        ->newTable($setup->getTable('loqate_tag_settingsdata'))
             ->addColumn(
-                'pcapredict_tag_settingsdata_id',
+                'loqate_tag_settingsdata_id',
                 Table::TYPE_INTEGER,
                 null,
                 [ 'identity' => true, 'nullable' => false, 'primary' => true, 'unsigned' => true ],

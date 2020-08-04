@@ -3,20 +3,20 @@
 ### From Git
 - Locate the **/app/code** directory which should be under the magento root installation.
 - If the **code** folder is not there, create it.
-- Create a folder **PCAPredict** inside the **code** folder. 
-- Change to the **PCAPredict** folder and clone the Git repository (https://github.com/pcapredict/magento2.git) into **PCAPredict** specifying the local repository folder to be **Tag** 
-e.g. ``` git clone https://github.com/pcapredict/magento2.git Tag```
+- Create a folder **Loqate** inside the **code** folder. 
+- Change to the **Loqate** folder and clone the Git repository (https://github.com/loqate/magento2.git) into **Loqate** specifying the local repository folder to be **Tag** 
+e.g. ``` git clone https://github.com/loqate/magento2.git Tag```
 
 ### From ZIP File
 - Locate the **/app/code** directory which should be under the magento root installation.
 - If the **code** folder is not there, create it.
-- Create the folder structure **PCAPredict/Tag/** inside the **code** folder. 
-- Download the latest release from the github site (https://github.com/PCAPredict/magento2/releases/).
+- Create the folder structure **loqate/Tag/** inside the **code** folder. 
+- Download the latest release from the github site (https://github.com/loqate/magento2/releases/).
 - Extract the zip contents to the **Tag** folder you just created. The README.md and all other files and folders should be under the **Tag** folder.
 
 ### If you're using Composer
 - Integrated with Packagist, so you should be able to get the latest version with:
-```composer require pcapredict/tag:^2.0.8```
+```composer require loqate/tag:^2.0.8```
 
 ### Magento Setup
 - Make sure you have the correct file and folder permissions set on your magento installation so that the magnento store can install the app.
@@ -26,10 +26,10 @@ e.g. ``` git clone https://github.com/pcapredict/magento2.git Tag```
 
 # **App Configuration Options**
 
-The configuration for the extension is located under *Stores* > *Other Settings* > **PCA Predict Settings**.
+The configuration for the extension is located under *Stores* > *Other Settings* > **Loqate Settings**.
 
 ### Main screen
-- Account Code - Enter your PCAPredict Account Code here.
+- Account Code - Enter your Loqate Account Code here.
 - Password - The password you used when you setup the account.
 
 ### Logged in screen
