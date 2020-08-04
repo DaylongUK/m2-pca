@@ -1,21 +1,15 @@
 <?php
-    $pcaSettings = $this->helper('PCAPredict\Tag\Helper\SettingsData');
+    $pcaSettings = $block->getSettingsHelper();
     $pcaAccCode = $pcaSettings->getAccountCode();
-
-    if ($pcaAccCode) { 
 ?>
+<?php if ($pcaAccCode): ?>
 
-<script type="text/javascript">
-
-    requirejs(['jquery'], function(){
-
-        (function() {
-            if (typeof pca !== "undefined") {
-                pca.magento.setupCheckout();
-            }
-        })();
-    });
-  
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Loqate_Tag/js/pca-chackout": {}
+        }
+    }
 </script>
 
-<?php }
+<?php endif; ?>
