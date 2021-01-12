@@ -1,7 +1,7 @@
 {
-    "name": "pcapredict/tag",
+    "name": "loqate/tag",
     "description": "Address Validation for Checkout Forms",
-	"type": "magento2-module",
+	  "type": "magento2-module",
     "version": "2.1.2",
     "authors": [
         {
@@ -20,7 +20,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PCAPredict\\Tag\\": ""
+            "Loqate\\Tag\\": ""
         },
         "files": [
             "registration.php"

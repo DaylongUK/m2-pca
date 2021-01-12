@@ -1,6 +1,6 @@
 # Release notes
 
-## v2.0.7
+## v2.0.10
 
 - Reviewed and updated the way we store/clear out credentials and the upgrade process from each version.
 - Version number of the app is loaded from config, not static anymore.

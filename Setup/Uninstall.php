@@ -1,6 +1,6 @@
 <?php
 
-namespace PCAPredict\Tag\Setup;
+namespace Loqate\Tag\Setup;
 
 use Magento\Framework\Setup\UninstallInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
@@ -16,10 +16,11 @@ class Uninstall implements UninstallInterface
      * @param ModuleContextInterface $context
      * @return void
      */
-    public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context) {
+    public function uninstall(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    {
         
         $setup->startSetup();
-        $setup->getConnection()->dropTable($connection->getTableName('pcapredict_tag_settingsdata'));
+        $setup->getConnection()->dropTable($connection->getTableName('loqate_tag_settingsdata'));
         $setup->endSetup();
     }
 }

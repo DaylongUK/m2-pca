@@ -1,23 +1,28 @@
 <?php
 
-namespace PCAPredict\Tag\Setup;
+namespace Loqate\Tag\Setup;
 
-use Magento\Framework\DB\Ddl\Table;
 use Magento\Framework\Setup\UpgradeSchemaInterface;
 use Magento\Framework\Setup\ModuleContextInterface;
 use Magento\Framework\Setup\SchemaSetupInterface;
+use Magento\Framework\DB\Ddl\Table;
 
 // Upgrade will only trigger if the setup_version in the module.xml is increased.
 class UpgradeSchema implements UpgradeSchemaInterface
 {
-    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context){
+    /**
+     * @param SchemaSetupInterface $setup
+     * @param ModuleContextInterface $context
+     */
+    public function upgrade(SchemaSetupInterface $setup, ModuleContextInterface $context)
+    {
         
         $setup->startSetup();
  
         if (version_compare($context->getVersion(), '2.0.7') < 0) {
 
             // Get module table
-            $tableName = $setup->getTable('pcapredict_tag_settingsdata');
+            $tableName = $setup->getTable('loqate_tag_settingsdata');
 
             // Check if the table already exists
             if ($setup->getConnection()->isTableExists($tableName) == true) {
@@ -27,13 +32,16 @@ class UpgradeSchema implements UpgradeSchemaInterface
 
                 // Add the version column so we can record what version of the app the creds were created from.
                 // In UpgradeData we set this column to the current version.
-                $setup->getConnection()->addColumn($tableName, 'module_version',
-                [
+                $setup->getConnection()->addColumn(
+                    $tableName,
+                    'module_version',
+                    [
                     'type' => Table::TYPE_TEXT,
                     'length' => 16,
                     'nullable' => true,
                     'comment' => 'Created With App Version'
-                ]);
+                    ]
+                );
             }
         }
 
